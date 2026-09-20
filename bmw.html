@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche - The Soul of a Sports Car</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d5001c;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d5001c;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920') center/cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: #d5001c;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            letter-spacing: 5px;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            padding: 18px 50px;
+            background: #d5001c;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .section-title p {
+            color: #888;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        /* Car Grid */
+        .car-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        /* Car Card */
+        .car-card {
+            background: #141414;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #222;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(213, 0, 28, 0.2);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 30px;
+        }
+
+        .car-category {
+            color: #d5001c;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .car-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .car-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .car-price {
+            font-size: 24px;
+            color: #d5001c;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .spec {
+            text-align: center;
+        }
+
+        .spec-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .spec-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .car-features {
+            margin-bottom: 20px;
+        }
+
+        .car-features h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .feature-tag {
+            background: #1e1e1e;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #ccc;
+            border: 1px solid #333;
+        }
+
+        .feature-tag.highlight {
+            background: rgba(213, 0, 28, 0.2);
+            border-color: #d5001c;
+            color: #d5001c;
+        }
+
+        .car-facts {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .car-facts h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #d5001c;
+            margin-bottom: 12px;
+        }
+
+        .facts-list {
+            list-style: none;
+        }
+
+        .facts-list li {
+            font-size: 13px;
+            color: #aaa;
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .facts-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #d5001c;
+        }
+
+        .view-details {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid #d5001c;
+            color: #d5001c;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .view-details:hover {
+            background: #d5001c;
+            color: #fff;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #111;
+            padding: 80px 20px;
+            margin: 60px 0;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            color: #d5001c;
+            font-weight: 300;
+        }
+
+        .stat-item p {
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        /* Heritage Section */
+        .heritage-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .heritage-text h2 {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .heritage-text h2 span {
+            color: #d5001c;
+        }
+
+        .heritage-text p {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .heritage-image {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            border-top: 1px solid #222;
+            padding: 60px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #d5001c;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+        }
+
+        /* Electric Badge */
+        .electric-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4aa, #00a882);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .car-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+
+            .heritage-section {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+                letter-spacing: 5px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+
+            .car-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .car-specs {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Scroll Animation */
+        .car-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .car-card:nth-child(1) { animation-delay: 0.1s; }
+        .car-card:nth-child(2) { animation-delay: 0.2s; }
+        .car-card:nth-child(3) { animation-delay: 0.3s; }
+        .car-card:nth-child(4) { animation-delay: 0.4s; }
+        .car-card:nth-child(5) { animation-delay: 0.5s; }
+        .car-card:nth-child(6) { animation-delay: 0.6s; }
+        .car-card:nth-child(7) { animation-delay: 0.7s; }
+        .car-card:nth-child(8) { animation-delay: 0.8s; }
+        .car-card:nth-child(9) { animation-delay: 0.9s; }
+        .car-card:nth-child(10) { animation-delay: 1.0s; }
+        .car-card:nth-child(11) { animation-delay: 1.1s; }
+        .car-card:nth-child(12) { animation-delay: 1.2s; }
+    </style>
+</head>
+<body data-brand="bmw">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PORSCHE</div>
+        <ul class="nav-links">
+            <li><a href="#models">Models</a></li>
+            <li><a href="#electric">Electric</a></li>
+            <li><a href="#heritage">Heritage</a></li>
+            <li><a href="#configure">Configure</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The Soul of a <span>Sports Car</span></h1>
+            <p>Engineered for those who seek perfection</p>
+            <a href="#models" class="cta-button">Explore Models</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>6</h3>
+                <p>Current Model Lines</p>
+            </div>
+            <div class="stat-item">
+                <h3>300k+</h3>
+                <p>Cars Produced Yearly</p>
+            </div>
+            <div class="stat-item">
+                <h3>13</h3>
+                <p>Featured Variants</p>
+            </div>
+            <div class="stat-item">
+                <h3>#1</h3>
+                <p>Most Reliable Sports Car</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section id="models">
+        <div class="section-title">
+            <h2>Our Models</h2>
+            <p>Every Porsche tells a story of performance, precision, and passion</p>
+        </div>
+
+        <div class="car-grid">
+
+            <!-- 911 Carrera -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&auto=format&fit=crop" alt="Porsche 911 Carrera" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Icon</div>
+                    <h3 class="car-name">911 Carrera</h3>
+                    <p class="car-subtitle">The timeless sports car legend</p>
+                    <div class="car-price">From $116,950</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">379</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">4.0s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">182</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">Rear-Engine</span>
+                            <span class="feature-tag highlight">Iconic Design</span>
+                            <span class="feature-tag">PASM Suspension</span>
+                            <span class="feature-tag">Sport Exhaust</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Iconic silhouette unchanged for 60+ years</li>
+                            <li>Only manufacturer with rear-engine sports cars</li>
+                            <li>Perfect 50/50 weight distribution with modern engineering</li>
+                            <li>Over 1 million 911s produced since 1963</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- 911 Turbo S -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=800&auto=format&fit=crop" alt="Porsche 911 Turbo S" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Performance</div>
+                    <h3 class="car-name">911 Turbo S</h3>
+                    <p class="car-subtitle">The supercar killer</p>
+                    <div class="car-price">From $230,000</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">640</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">2.6s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">205</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">Twin-Turbo</span>
+                            <span class="feature-tag highlight">AWD</span>
+                            <span class="feature-tag">Sport Chrono</span>
+                            <span class="feature-tag">Rear Axle Steering</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Faster acceleration than most hypercars</li>
+                            <li>Everyday usability with supercar performance</li>
+                            <li>Adaptive aerodynamics with active wings</li>
+                            <li>Ceramic composite brakes standard</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- 911 GT3 -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1634673970798-a15ae56f6c65?w=800&auto=format&fit=crop" alt="Porsche 911 GT3" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Track</div>
+                    <h3 class="car-name">911 GT3</h3>
+                    <p class="car-subtitle">Born on the track, built for the road</p>
+                    <div class="car-price">From $182,900</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">502</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">3.2s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">197</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">Naturally Aspirated</span>
+                            <span class="feature-tag highlight">9,000 RPM</span>
+                            <span class="feature-tag">Swan Neck Wing</span>
+                            <span class="feature-tag">Track Precision</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>High-revving 4.0L flat-six engine</li>
+                            <li>Consistently beats Nürburgring records</li>
+                            <li>Manual transmission available</li>
+                            <li>Lightweight construction with carbon fiber</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- 718 Cayman GT4 -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1613921568536-555645be4032?w=800&auto=format&fit=crop" alt="Porsche 718 Cayman GT4" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Mid-Engine</div>
+                    <h3 class="car-name">718 Cayman GT4 RS</h3>
+                    <p class="car-subtitle">The ultimate mid-engine weapon</p>
+                    <div class="car-price">From $143,800</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">493</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">3.2s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">196</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">911 GT3 Engine</span>
+                            <span class="feature-tag highlight">Mid-Engine</span>
+                            <span class="feature-tag">Lightweight</span>
+                            <span class="feature-tag">Track Focus</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Shares engine with the 911 GT3</li>
+                            <li>Perfect mid-engine balance</li>
+                            <li>Nürburgring lap record for its class</li>
+                            <li>Manual gearbox option available</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Taycan Turbo S -->
+            <div class="car-card" id="electric">
+                <img src="https://images.unsplash.com/photo-1597858520171-563a8e8b9925?w=800&auto=format&fit=crop" alt="Porsche Taycan Turbo S" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Electric <span class="electric-badge">Electric</span></div>
+                    <h3 class="car-name">Taycan Turbo S</h3>
+                    <p class="car-subtitle">The soul of a sports car, electrified</p>
+                    <div class="car-price">From $186,350</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">750</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">2.4s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">260mi</div>
+                            <div class="spec-label">Range</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">800V Architecture</span>
+                            <span class="feature-tag highlight">2-Speed Transmission</span>
+                            <span class="feature-tag">Air Suspension</span>
+                            <span class="feature-tag">Recuperation</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>First 800V production electric car</li>
+                            <li>22 minutes 10-80% charge time</li>
+                            <li>Consistent performance without battery fade</li>
+                            <li>Regenerative braking up to 265kW</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Taycan Cross Turismo -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1624880056139-d1212d7ff347?w=800&auto=format&fit=crop" alt="Porsche Taycan Cross Turismo" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Electric Wagon <span class="electric-badge">Electric</span></div>
+                    <h3 class="car-name">Taycan Cross Turismo</h3>
+                    <p class="car-subtitle">Electric adventure awaits</p>
+                    <div class="car-price">From $103,800</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">670</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">2.9s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">280mi</div>
+                            <div class="spec-label">Range</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">Shooting Brake</span>
+                            <span class="feature-tag highlight">AWD Standard</span>
+                            <span class="feature-tag">Gravel Mode</span>
+                            <span class="feature-tag">Roof Rails</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>First Porsche estate car in history</li>
+                            <li>Increased ride height for light off-road</li>
+                            <li>More headroom and cargo space</li>
+                            <li>Perfect blend of practicality and performance</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Cayenne Turbo GT -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1614162698829-831e2a7ca28c?w=800&auto=format&fit=crop" alt="Porsche Cayenne Turbo GT" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">SUV</div>
+                    <h3 class="car-name">Cayenne Turbo GT</h3>
+                    <p class="car-subtitle">The fastest SUV around the Nürburgring</p>
+                    <div class="car-price">From $195,950</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">631</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">3.1s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">186</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">V8 Twin-Turbo</span>
+                            <span class="feature-tag highlight">Nürburgring Record</span>
+                            <span class="feature-tag">Carbon Ceramic Brakes</span>
+                            <span class="feature-tag">Sport Chrono</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Holds Nürburgring SUV lap record</li>
+                            <li>22mm lower than other Cayennes</li>
+                            <li>Active anti-roll bars (PDCC)</li>
+                            <li>Carbon fiber roof for lower center of gravity</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Cayenne E-Hybrid -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?w=800&auto=format&fit=crop" alt="Porsche Cayenne E-Hybrid" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">SUV Hybrid <span class="electric-badge">Hybrid</span></div>
+                    <h3 class="car-name">Cayenne E-Hybrid</h3>
+                    <p class="car-subtitle">Performance meets efficiency</p>
+                    <div class="car-price">From $91,400</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">462</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">4.4s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">25mi</div>
+                            <div class="spec-label">EV Range</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">Plug-In Hybrid</span>
+                            <span class="feature-tag highlight">EV Mode</span>
+                            <span class="feature-tag">Regenerative Braking</span>
+                            <span class="feature-tag">Sport Plus Mode</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Drive up to 25 miles on pure electricity</li>
+                            <li>Combined V6 turbo and electric motor</li>
+                            <li>Instant electric torque boost</li>
+                            <li>EPA estimated 46 MPGe</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Macan Turbo -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1711962842423-28f28b5bbf1d?w=800&auto=format&fit=crop" alt="Porsche Macan" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Compact SUV</div>
+                    <h3 class="car-name">Macan GTS</h3>
+                    <p class="car-subtitle">The sports car of SUVs</p>
+                    <div class="car-price">From $75,900</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">434</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">4.4s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">164</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">V6 Twin-Turbo</span>
+                            <span class="feature-tag">Sport Exhaust</span>
+                            <span class="feature-tag">PASM Suspension</span>
+                            <span class="feature-tag">Porsche Traction Management</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Best-selling Porsche globally</li>
+                            <li>Most dynamic compact SUV</li>
+                            <li>Over 300,000 units sold since 2014</li>
+                            <li>Gateway to the Porsche family</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Macan Electric -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1688398658141-d39eda099217?w=800&auto=format&fit=crop" alt="Porsche Macan Electric" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Electric SUV <span class="electric-badge">Electric</span></div>
+                    <h3 class="car-name">Macan Electric</h3>
+                    <p class="car-subtitle">Reinvented for the electric age</p>
+                    <div class="car-price">From $80,450</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">630</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">3.1s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">308mi</div>
+                            <div class="spec-label">Range</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">800V Architecture</span>
+                            <span class="feature-tag highlight">PPE Platform</span>
+                            <span class="feature-tag">Air Suspension</span>
+                            <span class="feature-tag">AR Head-Up Display</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Most aerodynamic Porsche SUV ever</li>
+                            <li>10-80% charge in just 21 minutes</li>
+                            <li>Porsche Active Suspension with 2-chamber air</li>
+                            <li>Up to 308 miles of range</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Panamera Turbo S -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1704712375640-e7bfe18c7ad0?w=800&auto=format&fit=crop" alt="Porsche Panamera" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Grand Tourer</div>
+                    <h3 class="car-name">Panamera Turbo S E-Hybrid</h3>
+                    <p class="car-subtitle">Luxury meets raw power</p>
+                    <div class="car-price">From $207,350</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">690</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">3.0s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">196</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">V8 Hybrid</span>
+                            <span class="feature-tag highlight">Executive Limousine</span>
+                            <span class="feature-tag">Rear Axle Steering</span>
+                            <span class="feature-tag">Burmeister 3D Sound</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Most powerful Panamera ever</li>
+                            <li>Seamless blend of luxury and performance</li>
+                            <li>Available long wheelbase for extra legroom</li>
+                            <li>Porsche InnoDrive semi-autonomous driving</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- Panamera Sport Turismo -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1732624696535-68022a5b84dc?w=800&auto=format&fit=crop" alt="Porsche Panamera Sport Turismo" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Estate</div>
+                    <h3 class="car-name">Panamera Sport Turismo</h3>
+                    <p class="car-subtitle">The shooting brake for drivers</p>
+                    <div class="car-price">From $104,200</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">473</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">4.0s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">183</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">Shooting Brake Design</span>
+                            <span class="feature-tag">5 Seats</span>
+                            <span class="feature-tag">4+1 Configuration</span>
+                            <span class="feature-tag">Power Tailgate</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Practical estate without sacrificing style</li>
+                            <li>Extra cargo space for active lifestyles</li>
+                            <li>Rear seats fold flat for maximum utility</li>
+                            <li>Only premium shooting brake in its class</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+            <!-- 718 Boxster -->
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1732624696692-a841984e9b99?w=800&auto=format&fit=crop" alt="Porsche 718 Boxster" class="car-image">
+                <div class="car-info">
+                    <div class="car-category">Open Top</div>
+                    <h3 class="car-name">718 Boxster GTS 4.0</h3>
+                    <p class="car-subtitle">Pure open-top driving pleasure</p>
+                    <div class="car-price">From $99,650</div>
+                    <div class="car-specs">
+                        <div class="spec">
+                            <div class="spec-value">394</div>
+                            <div class="spec-label">HP</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">3.9s</div>
+                            <div class="spec-label">0-60 mph</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-value">180</div>
+                            <div class="spec-label">mph top</div>
+                        </div>
+                    </div>
+                    <div class="car-features">
+                        <h4>Highlights</h4>
+                        <div class="features-list">
+                            <span class="feature-tag highlight">Naturally Aspirated</span>
+                            <span class="feature-tag highlight">Convertible</span>
+                            <span class="feature-tag">Sport Exhaust</span>
+                            <span class="feature-tag">Manual Available</span>
+                        </div>
+                    </div>
+                    <div class="car-facts">
+                        <h4>What Makes It Special</h4>
+                        <ul class="facts-list">
+                            <li>Only mid-engine convertible at this price</li>
+                            <li>4.0L flat-six from the GT3</li>
+                            <li>Convertible top opens in 9 seconds</li>
+                            <li>Perfect 50/50 weight distribution</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-details">Configure Yours</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section id="heritage" class="heritage-section">
+        <div class="heritage-text">
+            <h2>75 Years of <span>Passion</span></h2>
+            <p>Since 1931, Porsche has been synonymous with engineering excellence. What started as a design consultancy by Ferdinand Porsche has become one of the world's most revered sports car manufacturers.</p>
+            <p>Every Porsche is designed with one philosophy in mind: the perfect sports car. Not just fast, but engaging. Not just beautiful, but purposeful. Not just powerful, but precise.</p>
+            <p>From the iconic 911 to the revolutionary Taycan, each model carries the DNA of seven decades of motorsport success and road car perfection.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1658863567312-fcaf9a15bc6f?w=800&auto=format&fit=crop" alt="Porsche Heritage" class="heritage-image">
+    </section>
+
+    <!-- Why Porsche Section -->
+    <section class="stats-section">
+        <div class="section-title">
+            <h2>Why Porsche</h2>
+            <p>What sets Porsche apart from every other manufacturer</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>Engineered</h3>
+                <p>Every detail is purpose-built</p>
+            </div>
+            <div class="stat-item">
+                <h3>Tested</h3>
+                <p>On the track before the road</p>
+            </div>
+            <div class="stat-item">
+                <h3>Handcrafted</h3>
+                <p>Built with precision in Germany</p>
+            </div>
+            <div class="stat-item">
+                <h3>Enduring</h3>
+                <p>Designed to last decades</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Models</h4>
+                <ul>
+                    <li><a href="#">718 Models</a></li>
+                    <li><a href="#">911 Models</a></li>
+                    <li><a href="#">Taycan Models</a></li>
+                    <li><a href="#">Panamera Models</a></li>
+                    <li><a href="#">Cayenne Models</a></li>
+                    <li><a href="#">Macan Models</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Configure & Price</a></li>
+                    <li><a href="#">Find a Dealer</a></li>
+                    <li><a href="#">Test Drive</a></li>
+                    <li><a href="#">Pre-Owned</a></li>
+                    <li><a href="#">Porsche Approved</a></li>
+                    <li><a href="#">Finance</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Experience</h4>
+                <ul>
+                    <li><a href="#">Porsche Experience Center</a></li>
+                    <li><a href="#">Motorsport</a></li>
+                    <li><a href="#">Classic Cars</a></li>
+                    <li><a href="#">Lifestyle Collection</a></li>
+                    <li><a href="#">Porsche Newsroom</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Schedule Service</a></li>
+                    <li><a href="#">Recall Information</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Porsche AG. All rights reserved. Specifications and prices subject to change without notice.</p>
+        </div>
+    </footer>
+
+<script src="brand-pages.js"></script>
+</body>
+</html>
