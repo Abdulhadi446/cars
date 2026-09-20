@@ -35,12 +35,15 @@ const brandData = {
 
 const config = brandData[document.body.dataset.brand];
 if (config) {
+  document.body.style.setProperty('--hero-image', `url("https://images.unsplash.com/photo-${config.images[0]}?w=1920&auto=format&fit=crop")`);
   document.title = `${config.name} - The Soul of Performance`;
   document.querySelector('.logo').textContent = config.name.toUpperCase();
   document.querySelector('.hero h1').innerHTML = `The Soul of a <span>${config.name}</span>`;
   document.querySelector('.hero p').textContent = config.tagline;
   document.querySelector('.section-title h2').textContent = `${config.name} Models`;
   document.querySelector('.section-title p').textContent = `Explore the complete ${config.name} range, from everyday icons to track-bred performance cars`;
+  document.querySelectorAll('.section-title')[1].querySelector('h2').textContent = `Why ${config.name}`;
+  document.querySelectorAll('.section-title')[1].querySelector('p').textContent = `What sets ${config.name} apart from every other manufacturer`;
   document.querySelector('.heritage-text h2').innerHTML = `${config.name} <span>DNA</span>`;
   document.querySelector('.heritage-text p').textContent = `${config.name} combines design, engineering, and performance across every model in its range.`;
   document.querySelectorAll('.heritage-text p')[1].textContent = `Every ${config.name} is shaped around a clear idea: purposeful design with technology that earns its place.`;
