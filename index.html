@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A visual index of performance, luxury, electric, and everyday automotive brands.">
+  <title>Motor Index | Explore Automotive Brands</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #f0f1eb;
+      --muted: #96a39d;
+      --paper: #090d0e;
+      --panel: #12191a;
+      --line: #293535;
+      --accent: #ef5b43;
+      --accent-dark: #ad392b;
+      --green: #12352f;
+      --yellow: #e6bd54;
+      --shadow: 0 18px 40px rgba(0, 0, 0, .34);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at 82% 4%, #172725 0, var(--paper) 28rem), var(--paper);
+      font-family: Archivo, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .shell { width: min(1240px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 22px 0; border-bottom: 1px solid var(--line);
+    }
+    .wordmark { font-size: 14px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .wordmark span { color: var(--accent); }
+    .topnav { display: flex; gap: 22px; color: var(--muted); font-size: 13px; }
+    .topnav a { text-decoration: none; }
+    .topnav a:hover { color: var(--accent); }
+    .hero {
+      min-height: 600px; display: grid; grid-template-columns: 1.08fr .92fr; gap: 42px;
+      align-items: center; padding: 76px 0 84px;
+    }
+    .eyebrow { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 720px; margin-bottom: 24px; font-size: clamp(48px, 7vw, 92px); line-height: .98; letter-spacing: -.045em; }
+    h1 em { color: var(--accent); font-family: 'DM Serif Display', serif; font-weight: 400; letter-spacing: 0; }
+    .hero-copy { max-width: 550px; color: var(--muted); font-size: 18px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 19px; border: 1px solid var(--ink); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+    .button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .button.secondary { background: transparent; }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(23, 33, 28, .12); }
+    .hero-art { position: relative; min-height: 470px; overflow: hidden; background: var(--green); box-shadow: var(--shadow); }
+    .hero-art img { width: 100%; height: 100%; min-height: 470px; display: block; object-fit: cover; opacity: .82; }
+    .hero-art::after { content: '09'; position: absolute; right: 20px; bottom: -28px; color: rgba(255,255,255,.18); font-size: 170px; font-weight: 800; line-height: 1; }
+    .hero-label { position: absolute; left: 20px; bottom: 18px; color: #fff; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+    .section { padding: 82px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 30px; }
+    h2 { margin-bottom: 8px; font-size: clamp(30px, 4vw, 52px); line-height: 1; letter-spacing: -.04em; }
+    .section-intro { max-width: 560px; margin-bottom: 0; color: var(--muted); }
+    .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .brand-card { position: relative; min-height: 340px; overflow: hidden; background: var(--ink); color: #fff; }
+    .brand-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; opacity: .62; transition: transform .5s, opacity .5s; }
+    .brand-card:hover img { transform: scale(1.06); opacity: .82; }
+    .brand-card { cursor: none; }
+    .brand-card::after { content: ''; position: absolute; inset: 30% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.88)); }
+    .brand-content { position: absolute; z-index: 1; right: 22px; bottom: 21px; left: 22px; }
+    .brand-number { color: var(--yellow); font-size: 11px; font-weight: 700; letter-spacing: .16em; }
+    .brand-content h3 { margin: 6px 0 4px; font-size: 27px; }
+    .brand-content p { min-height: 47px; margin-bottom: 14px; color: #d9ded9; font-size: 13px; }
+    .brand-link { color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+    .brand-link:hover { color: var(--yellow); }
+    .car-cursor { position: fixed; z-index: 20; width: 150px; height: 96px; overflow: hidden; border: 2px solid var(--yellow); pointer-events: none; opacity: 0; transform: translate3d(-50%, -50%, 0) scale(.78) rotate(-4deg); transition: opacity .18s, transform .18s; background: #101718; box-shadow: 0 14px 34px rgba(0,0,0,.5); }
+    .car-cursor.visible { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1) rotate(-4deg); }
+    .car-cursor img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .car-cursor-label { position: absolute; right: 6px; bottom: 4px; left: 6px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-shadow: 0 1px 4px #000; text-transform: uppercase; }
+    .brand-card:focus-within { outline: 2px solid var(--yellow); outline-offset: 4px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0 30px; }
+    .directory-tools { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 25px 0 18px; }
+    .search-box { flex: 1; min-width: 220px; padding: 13px 15px; border: 1px solid var(--line); background: #0d1314; color: var(--ink); font: inherit; }
+    .search-box::placeholder { color: #68756f; }
+    .search-box:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .sort-box { padding: 12px 14px; border: 1px solid var(--line); background: #0d1314; color: var(--ink); font: inherit; }
+    .result-count { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .filter { padding: 9px 13px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: 12px; }
+    .filter.active, .filter:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .signal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .signal { min-height: 150px; padding: 24px; background: var(--panel); }
+    .signal strong { display: block; margin-bottom: 12px; color: var(--accent); font-size: 42px; line-height: 1; }
+    .signal span { color: var(--muted); font-size: 13px; }
+    .guide-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
+    .guide-panel { padding: 30px; border: 1px solid var(--line); background: var(--panel); }
+    .guide-panel h3 { margin-bottom: 12px; font-size: 24px; }
+    .guide-panel p { color: var(--muted); }
+    .lane-picker { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .lane-picker h4 { margin: 0 0 12px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+    .lane-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .lane-button { padding: 9px 11px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; font: inherit; font-size: 12px; }
+    .lane-button:hover, .lane-button.active { border-color: var(--yellow); color: var(--yellow); }
+    .lane-result { min-height: 46px; margin: 14px 0 0; color: var(--ink); font-size: 14px; }
+    .lane-result a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .guide-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin: 0; padding: 0; list-style: none; }
+    .guide-list li { padding-top: 10px; border-top: 1px solid var(--line); font-size: 13px; }
+    .guide-list strong { display: block; margin-bottom: 3px; }
+    .compare { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+    table { width: 100%; min-width: 700px; border-collapse: collapse; text-align: left; }
+    th, td { padding: 16px 18px; border-bottom: 1px solid var(--line); font-size: 13px; }
+    th { color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    td:first-child { font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+    .cta { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center; padding: 34px; background: var(--green); color: #fff; }
+    .cta h2 { margin-bottom: 8px; color: #fff; font-size: 34px; }
+    .cta p { max-width: 620px; margin-bottom: 0; color: #c9d7cf; }
+    .cta .button { border-color: #fff; color: #fff; }
+    footer { padding: 34px 0 46px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .footer-line { display: flex; justify-content: space-between; gap: 20px; }
+    @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { .brand-card { cursor: pointer; } .car-cursor { display: none; } }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .hero-art { min-height: 360px; } .hero-art img { min-height: 360px; } .brand-grid { grid-template-columns: repeat(2, 1fr); } .signal-grid { grid-template-columns: repeat(2, 1fr); } .guide-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .shell { width: min(100% - 28px, 1240px); } .topnav { display: none; } .hero { min-height: auto; padding: 56px 0 64px; } h1 { font-size: 52px; } .brand-grid { grid-template-columns: 1fr; } .brand-card { min-height: 300px; } .section { padding: 58px 0; } .section-head { display: block; } .directory-tools { align-items: stretch; flex-direction: column; } .sort-box { width: 100%; } .signal-grid { grid-template-columns: 1fr 1fr; } .signal { min-height: 130px; padding: 18px; } .signal strong { font-size: 32px; } .guide-list { grid-template-columns: 1fr; } .cta { grid-template-columns: 1fr; padding: 25px; } .footer-line { display: block; } }
+  </style>
+</head>
+<body>
+  <div class="car-cursor" aria-hidden="true"><img alt=""><span class="car-cursor-label"></span></div>
+  <div class="shell">
+    <header class="topbar">
+      <div class="wordmark">Motor <span>/</span> Index</div>
+      <nav class="topnav" aria-label="Main navigation">
+        <a href="#brands">Brands</a>
+        <a href="#signals">The landscape</a>
+        <a href="#guide">Choose your lane</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">A living index of automotive character</p>
+          <h1>Find the car that fits your <em>velocity.</em></h1>
+          <p class="hero-copy">Nine marque-specific guides. Performance icons, luxury flagships, electric experiments, practical machines, and the stories their design languages tell.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#brands">Browse all brands</a>
+            <a class="button secondary" href="#guide">Start with a category</a>
+          </div>
+        </div>
+        <a class="hero-art" href="porsche.html" aria-label="Open Porsche lineup">
+          <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=1200&auto=format&fit=crop" alt="A silver Porsche sports car on a road">
+          <span class="hero-label">Featured index / Porsche</span>
+        </a>
+      </section>
+
+      <section class="section" id="brands">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">The directory</p>
+            <h2>Pick a point of view.</h2>
+          </div>
+          <p class="section-intro">Each guide follows the same visual language, then changes its focus: model range, design DNA, signature cars, and the details that make a manufacturer recognizable.</p>
+        </div>
+        <div class="filter-row" aria-label="Filter manufacturers">
+          <button class="filter active" data-filter="all" aria-pressed="true">All brands</button>
+          <button class="filter" data-filter="performance" aria-pressed="false">Performance</button>
+          <button class="filter" data-filter="luxury" aria-pressed="false">Luxury</button>
+          <button class="filter" data-filter="electric" aria-pressed="false">Electric</button>
+          <button class="filter" data-filter="everyday" aria-pressed="false">Everyday</button>
+        </div>
+        <div class="directory-tools">
+          <input class="search-box" type="search" placeholder="Search BMW, electric, Italy..." aria-label="Search manufacturers">
+          <select class="sort-box" aria-label="Sort manufacturers">
+            <option value="number">Index order</option>
+            <option value="name">Alphabetical</option>
+          </select>
+          <span class="result-count" aria-live="polite">9 brands shown</span>
+        </div>
+        <div class="brand-grid">
+          <article class="brand-card" data-tags="performance luxury"><img src="https://images.unsplash.com/photo-1607853554439-0069ec0f29b6?w=900&auto=format&fit=crop" alt="BMW performance car"><div class="brand-content"><span class="brand-number">01 / GERMANY</span><h3>BMW</h3><p>Precision handling, M performance, and a deep catalog of driver-focused sedans and SUVs.</p><a class="brand-link" href="bmw.html">Open BMW guide →</a></div></article>
+          <article class="brand-card" data-tags="performance luxury"><img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900&auto=format&fit=crop" alt="Red Ferrari sports car"><div class="brand-content"><span class="brand-number">02 / ITALY</span><h3>Ferrari</h3><p>Racing heritage translated into sculptural grand tourers, V12 flagships, and hybrid supercars.</p><a class="brand-link" href="ferrari.html">Open Ferrari guide →</a></div></article>
+          <article class="brand-card" data-tags="luxury electric everyday"><img src="https://images.unsplash.com/photo-1624085568108-36410cfe4d24?w=900&auto=format&fit=crop" alt="Mercedes-Benz coupe"><div class="brand-content"><span class="brand-number">03 / GERMANY</span><h3>Mercedes-Benz</h3><p>Executive comfort, AMG intensity, and a broad electric range shaped around quiet confidence.</p><a class="brand-link" href="mercedes.html">Open Mercedes guide →</a></div></article>
+          <article class="brand-card" data-tags="performance luxury"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=900&auto=format&fit=crop" alt="Yellow Lamborghini sports car"><div class="brand-content"><span class="brand-number">04 / ITALY</span><h3>Lamborghini</h3><p>Wedge-shaped drama, naturally aspirated legends, and unapologetic super-SUV energy.</p><a class="brand-link" href="lamborghini.html">Open Lamborghini guide →</a></div></article>
+          <article class="brand-card" data-tags="luxury electric performance"><img src="https://images.unsplash.com/photo-1561924563-d9ad0f32b23f?w=900&auto=format&fit=crop" alt="Audi vehicle front grille"><div class="brand-content"><span class="brand-number">05 / GERMANY</span><h3>Audi</h3><p>Understated design, quattro confidence, RS performance, and a measured electric transition.</p><a class="brand-link" href="audi.html">Open Audi guide →</a></div></article>
+          <article class="brand-card" data-tags="electric performance"><img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=900&auto=format&fit=crop" alt="Tesla electric vehicle"><div class="brand-content"><span class="brand-number">06 / UNITED STATES</span><h3>Tesla</h3><p>Software-led electric mobility, long-range platforms, and a willingness to redraw the segment.</p><a class="brand-link" href="tesla.html">Open Tesla guide →</a></div></article>
+          <article class="brand-card" data-tags="everyday electric"><img src="https://images.unsplash.com/photo-1624951352908-3579b7df9c05?w=900&auto=format&fit=crop" alt="Toyota vehicle"><div class="brand-content"><span class="brand-number">07 / JAPAN</span><h3>Toyota</h3><p>Dependable daily transport alongside GR performance, hybrid leadership, and off-road icons.</p><a class="brand-link" href="toyota.html">Open Toyota guide →</a></div></article>
+          <article class="brand-card" data-tags="performance luxury"><img src="https://images.unsplash.com/photo-1621615578530-cbf3c443165f?w=900&auto=format&fit=crop" alt="McLaren orange sports car"><div class="brand-content"><span class="brand-number">08 / UNITED KINGDOM</span><h3>McLaren</h3><p>Carbon-fiber engineering, low mass, and a motorsport mindset distilled into road cars.</p><a class="brand-link" href="mclaren.html">Open McLaren guide →</a></div></article>
+          <article class="brand-card" data-tags="performance luxury electric"><img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=900&auto=format&fit=crop" alt="Porsche sports car"><div class="brand-content"><span class="brand-number">09 / GERMANY</span><h3>Porsche</h3><p>Six model families, decades of racing DNA, and a precise balance between daily life and speed.</p><a class="brand-link" href="porsche.html">Open Porsche guide →</a></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="signals">
+        <div class="section-head"><div><p class="eyebrow">Read the landscape</p><h2>Different roads. Shared obsession.</h2></div><p class="section-intro">The modern car market is no longer one straight line. It branches into distinct ideas of what a vehicle should be.</p></div>
+        <div class="signal-grid">
+          <div class="signal"><strong>09</strong><span>manufacturer guides in this index</span></div>
+          <div class="signal"><strong>04</strong><span>continents represented across the directory</span></div>
+          <div class="signal"><strong>03</strong><span>recurring forces: performance, luxury, electrification</span></div>
+          <div class="signal"><strong>01</strong><span>useful starting point for your next deep dive</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="guide">
+        <div class="section-head"><div><p class="eyebrow">Choose your lane</p><h2>What kind of car story are you after?</h2></div><p class="section-intro">Start with the feeling, then open a guide and compare the full range on its own terms.</p></div>
+        <div class="guide-grid">
+          <div class="guide-panel"><h3>For the driver</h3><p>Look for a low seating position, a responsive chassis, and a powertrain that rewards attention rather than simply producing numbers.</p><ul class="guide-list"><li><strong>Track-bred</strong> Ferrari, Lamborghini, McLaren</li><li><strong>Balanced</strong> BMW, Porsche, Audi</li><li><strong>Luxury performance</strong> Mercedes-Benz</li><li><strong>Electric speed</strong> Tesla, Porsche</li></ul><div class="lane-picker"><h4>Quick recommendation</h4><div class="lane-buttons"><button class="lane-button" data-lane="weekend">Weekend machine</button><button class="lane-button" data-lane="daily">Daily confidence</button><button class="lane-button" data-lane="electric">Electric leap</button><button class="lane-button" data-lane="luxury">Quiet luxury</button></div><p class="lane-result" aria-live="polite">Choose a lane and the index will point you somewhere interesting.</p></div></div>
+          <div class="guide-panel"><h3>For real life</h3><p>Space, range, comfort, and an ownership rhythm that works on an ordinary Tuesday matter just as much as the headline specification.</p><ul class="guide-list"><li><strong>Daily flexibility</strong> BMW, Toyota, Mercedes-Benz</li><li><strong>Family range</strong> Audi, Toyota, Tesla</li><li><strong>Quiet progress</strong> Mercedes-Benz, Audi, Tesla</li><li><strong>Icon status</strong> Porsche, Ferrari</li></ul></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div><p class="eyebrow">Quick comparison</p><h2>Find your starting signal.</h2></div><p class="section-intro">A compact first read before you open the detailed brand pages.</p></div>
+        <div class="compare"><table><thead><tr><th>Brand</th><th>Known for</th><th>Best starting point</th><th>Energy</th></tr></thead><tbody><tr><td>Porsche</td><td>Sports-car balance</td><td>911 / Macan</td><td>Focused</td></tr><tr><td>BMW</td><td>Driver involvement</td><td>3 Series / X3</td><td>Precise</td></tr><tr><td>Ferrari</td><td>Motorsport emotion</td><td>296 GTB / Roma</td><td>Dramatic</td></tr><tr><td>Mercedes-Benz</td><td>Luxury breadth</td><td>C-Class / G-Class</td><td>Composed</td></tr><tr><td>Tesla</td><td>Electric software</td><td>Model 3 / Model Y</td><td>Minimal</td></tr><tr><td>Toyota</td><td>Trust and range</td><td>Corolla / Land Cruiser</td><td>Durable</td></tr></tbody></table></div>
+      </section>
+
+      <section class="section"><div class="cta"><div><h2>Go deeper than the badge.</h2><p>Open a manufacturer guide to see its model range, visual identity, signature cars, and the details that make the company worth remembering.</p></div><a class="button" href="#brands">Explore the index</a></div></section>
+    </main>
+
+    <footer><div class="footer-line"><span>Motor Index / Independent visual directory</span><span>Built for curiosity, comparison, and the open road.</span></div></footer>
+  </div>
+  <script>
+    const filterButtons = document.querySelectorAll('.filter');
+    const brandGrid = document.querySelector('.brand-grid');
+    const brandCards = [...document.querySelectorAll('.brand-card')];
+    const searchBox = document.querySelector('.search-box');
+    const sortBox = document.querySelector('.sort-box');
+    const resultCount = document.querySelector('.result-count');
+    const carCursor = document.querySelector('.car-cursor');
+    const carCursorImage = carCursor.querySelector('img');
+    const carCursorLabel = carCursor.querySelector('.car-cursor-label');
+    let activeFilter = 'all';
+
+    brandCards.forEach(card => {
+      card.addEventListener('pointerenter', event => {
+        carCursorImage.src = card.querySelector('img').src;
+        carCursorImage.alt = card.querySelector('img').alt;
+        carCursorLabel.textContent = card.querySelector('h3').textContent;
+        carCursor.style.left = `${event.clientX}px`;
+        carCursor.style.top = `${event.clientY}px`;
+        carCursor.classList.add('visible');
+      });
+      card.addEventListener('pointermove', event => {
+        carCursor.style.left = `${event.clientX}px`;
+        carCursor.style.top = `${event.clientY}px`;
+      });
+      card.addEventListener('pointerleave', () => carCursor.classList.remove('visible'));
+    });
+
+    function applyDirectoryState() {
+      const query = searchBox.value.trim().toLowerCase();
+      let visibleCards = 0;
+      brandCards.forEach(card => {
+        const searchableText = card.textContent.toLowerCase();
+        const matchesFilter = activeFilter === 'all' || card.dataset.tags.split(' ').includes(activeFilter);
+        const matchesSearch = !query || searchableText.includes(query);
+        const matchesFavorites = !window.motorFavoritesOnly || window.MotorIndex?.isFavorite(card.dataset.brand);
+        card.hidden = !(matchesFilter && matchesSearch && matchesFavorites);
+        if (!card.hidden) visibleCards += 1;
+      });
+      resultCount.textContent = `${visibleCards} brand${visibleCards === 1 ? '' : 's'} shown`;
+      document.querySelector('.no-results')?.classList.toggle('visible', visibleCards === 0);
+    }
+
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      filterButtons.forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      activeFilter = button.dataset.filter;
+      applyDirectoryState();
+    }));
+    searchBox.addEventListener('input', applyDirectoryState);
+    sortBox.addEventListener('change', () => {
+      [...brandGrid.children]
+        .sort((first, second) => sortBox.value === 'name'
+          ? first.querySelector('h3').textContent.localeCompare(second.querySelector('h3').textContent)
+          : Number(first.querySelector('.brand-number').textContent.slice(0, 2)) - Number(second.querySelector('.brand-number').textContent.slice(0, 2)))
+        .forEach(card => brandGrid.appendChild(card));
+      applyDirectoryState();
+    });
+
+    const recommendations = {
+      weekend: 'Start with <a href="ferrari.html">Ferrari</a>, <a href="mclaren.html">McLaren</a>, or <a href="lamborghini.html">Lamborghini</a> for the sharpest weekend energy.',
+      daily: 'Open <a href="bmw.html">BMW</a>, <a href="toyota.html">Toyota</a>, or <a href="mercedes.html">Mercedes-Benz</a> for a range built around real life.',
+      electric: 'Explore <a href="tesla.html">Tesla</a>, then compare the electric direction of <a href="audi.html">Audi</a> and <a href="porsche.html">Porsche</a>.',
+      luxury: 'Begin with <a href="mercedes.html">Mercedes-Benz</a>, <a href="audi.html">Audi</a>, or <a href="porsche.html">Porsche</a> for considered comfort with character.'
+    };
+    document.querySelectorAll('.lane-button').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('.lane-button').forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      document.querySelector('.lane-result').innerHTML = recommendations[button.dataset.lane];
+    }));
+  </script>
+  <script src="site-features.js"></script>
+</body>
+</html>
