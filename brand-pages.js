@@ -44,6 +44,17 @@ const themes = {
   mclaren: { bg: '#100b07', panel: '#21150d', line: '#5b3b1d', accent: '#ff8738', soft: '#d2b18f' }
 };
 
+const specData = {
+  bmw: [['255','5.6s','155 mph'],['255','5.9s','155 mph'],['375','4.9s','155 mph'],['473','4.1s','155 mph'],['473','3.9s','155 mph'],['503','3.8s','155 mph'],['617','3.0s','155 mph'],['255','6.0s','155 mph'],['375','4.6s','155 mph'],['375','4.5s','155 mph'],['335','5.5s','155 mph'],['593','3.7s','155 mph'],['536','4.6s','155 mph']],
+  ferrari: [['819','2.9s','205 mph'],['819','2.9s','205 mph'],['612','3.4s','199 mph'],['612','3.4s','199 mph'],['986','2.0s','211 mph'],['986','2.0s','211 mph'],['819','2.9s','211 mph'],['715','3.3s','193 mph'],['789','2.9s','211 mph'],['710','2.9s','211 mph'],['711','2.8s','211 mph'],['829','2.9s','211 mph'],['799','2.9s','186 mph']],
+  mercedes: [['188','7.1s','149 mph'],['255','5.8s','155 mph'],['255','5.8s','155 mph'],['442','4.3s','155 mph'],['443','4.0s','130 mph'],['402','4.5s','130 mph'],['221','6.3s','155 mph'],['255','5.8s','155 mph'],['577','3.1s','196 mph'],['577','3.8s','191 mph'],['221','7.2s','130 mph'],['375','5.3s','155 mph'],['577','4.2s','149 mph']],
+  lamborghini: [['1001','2.5s','217 mph'],['907','2.7s','213 mph'],['789','3.4s','190 mph'],['657','3.5s','189 mph'],['657','3.3s','190 mph'],['631','2.9s','202 mph'],['631','2.8s','193 mph'],['601','3.4s','162 mph'],['759','2.8s','217 mph'],['803','2.8s','221 mph'],['808','2.8s','220 mph'],['818','2.7s','220 mph'],['750','2.8s','221 mph']],
+  audi: [['201','6.0s','130 mph'],['201','6.0s','130 mph'],['261','5.7s','155 mph'],['335','5.0s','155 mph'],['335','5.6s','155 mph'],['201','7.1s','130 mph'],['261','5.7s','155 mph'],['335','5.7s','130 mph'],['335','5.5s','155 mph'],['637','2.8s','155 mph'],['295','5.0s','112 mph'],['621','3.3s','190 mph'],['602','3.1s','205 mph']],
+  tesla: [['394','4.0s','125 mph'],['384','4.8s','135 mph'],['670','3.1s','200 mph'],['670','3.8s','155 mph'],['845','2.6s','130 mph'],['1000','under 2.0s','250 mph'],['510','3.1s','162 mph'],['455','3.5s','155 mph'],['1020','1.99s','200 mph'],['1020','2.5s','155 mph'],['900','electric truck','300 mi'],['363','4.9s','145 mph'],['384','4.8s','135 mph']],
+  toyota: [['169','8.1s','115 mph'],['225','7.4s','135 mph'],['264','5.7s','130 mph'],['194','7.2s','112 mph'],['228','6.1s','140 mph'],['300','5.0s','143 mph'],['382','3.9s','155 mph'],['203','8.0s','117 mph'],['265','7.3s','130 mph'],['326','7.0s','108 mph'],['278','7.0s','115 mph'],['389','6.6s','130 mph'],['214','6.7s','99 mph']],
+  mclaren: [['740','2.7s','206 mph'],['740','2.8s','206 mph'],['671','3.0s','205 mph'],['671','2.8s','205 mph'],['755','2.1s','205 mph'],['710','2.9s','212 mph'],['612','3.1s','203 mph'],['804','2.8s','200 mph'],['814','2.8s','208 mph'],['814','2.5s','208 mph'],['1035','2.9s','250 mph'],['903','2.8s','217 mph'],['618','3.2s','243 mph']]
+};
+
 const config = brandData[document.body.dataset.brand];
 if (config) {
   const theme = themes[document.body.dataset.brand];
@@ -100,6 +111,13 @@ if (config) {
     card.querySelector('.car-category').textContent = index < 4 ? 'Performance' : index < 8 ? 'Core Range' : 'Premium Range';
     card.querySelector('.car-subtitle').textContent = `${config.name} ${model} — engineered for the road ahead`;
     card.querySelector('.car-price').textContent = `Est. from ${config.prices[index] || 'Price on request'}`;
+    const specs = (specData[document.body.dataset.brand] || [])[index] || ['N/A', 'N/A', 'N/A'];
+    const specItems = card.querySelectorAll('.spec');
+    const specLabels = ['HP', '0-60 mph', specs[2].includes('mi') ? 'Range' : 'Top speed'];
+    specItems.forEach((item, specIndex) => {
+      item.querySelector('.spec-value').textContent = specs[specIndex];
+      item.querySelector('.spec-label').textContent = specLabels[specIndex];
+    });
     card.querySelectorAll('.car-facts li').forEach((item, factIndex) => {
       item.textContent = [`Distinctive ${config.name} design language`, 'Advanced engineering meets everyday usability', 'Built for confident performance in every drive', `A defining model in the ${config.name} range`][factIndex];
     });
