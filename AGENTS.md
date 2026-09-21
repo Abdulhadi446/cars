@@ -8,16 +8,18 @@ Static automotive brand showcase ("Motor Index"). Vanilla HTML/CSS/JS — no bui
 
 - `index.html` — landing page, brand directory grid with filter/search/sort
 - `{brand}.html` — individual brand pages (bmw, ferrari, mercedes, lamborghini, audi, tesla, toyota, mclaren, porsche)
-- `brand-pages.js` — shared data (models, specs, themes, images) and per-brand page rendering. Reads `document.body.dataset.brand` to pick which brand config to apply
+- `brand-pages.js` — shared data (models, specs, themes) and per-brand page rendering. Reads `document.body.dataset.brand` to pick which brand config to apply. Does not contain image URLs.
 - `car-hover.js` — custom cursor preview on `.car-card` hover (used on brand pages)
 - `site-features.js` — favorites, comparison, mobile nav, image fallbacks. Exposes `window.MotorIndex` API. State persisted in localStorage under key `motor-index-state`
 - `assets/` — currently empty; images are loaded from Unsplash URLs
 
 ## How brand pages work
 
-All brand HTML files except `porsche.html` share one template. `brand-pages.js` reads `data-brand` from `<body>`, looks up `brandData`, `themes`, `specData`, `featureData`, and rewrites the DOM at load time. When adding a new brand, you must update **all four** data objects in `brand-pages.js`.
+All brand HTML files except `porsche.html` share one template. `brand-pages.js` reads `data-brand` from `<body>`, looks up `brandData`, `themes`, `specData`, and `featureData`, and rewrites the DOM at load time. When adding a new brand, you must update all three JS data objects plus hardcode the image URLs in the HTML template.
 
 **Exception:** `porsche.html` is the original page — it has hardcoded Porsche content, does not carry a `data-brand` attribute, and does not load `brand-pages.js`. It loads only `car-hover.js` and `site-features.js`. All other brand pages load all three scripts.
+
+**Images are hardcoded in the HTML.** Each brand page's `<img>` tags contain full Unsplash URLs directly. The JS only updates text content (names, prices, specs, etc.) — never image sources.
 
 ## Conventions
 
