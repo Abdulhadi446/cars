@@ -94,13 +94,6 @@ if (config) {
   document.head.appendChild(themeStyle);
   const description = document.querySelector('meta[name="description"]') || document.head.appendChild(Object.assign(document.createElement('meta'), { name: 'description' }));
   description.content = `${config.name} model guide with current vehicles, performance highlights, design DNA, and range overview.`;
-  const fallbackImage = `https://images.unsplash.com/photo-${config.images[0]}?w=800&auto=format&fit=crop`;
-  const setImage = (element, url, alt) => {
-    element.onerror = () => { element.onerror = null; element.src = fallbackImage; };
-    element.src = url;
-    element.alt = alt;
-  };
-  document.body.style.setProperty('--hero-image', `url("https://images.unsplash.com/photo-${config.images[0]}?w=1920&auto=format&fit=crop")`);
   document.title = `${config.name} - The Soul of Performance`;
   document.querySelector('.logo').textContent = config.name.toUpperCase();
   document.querySelector('.hero h1').innerHTML = `The Soul of a <span>${config.name}</span>`;
@@ -113,11 +106,8 @@ if (config) {
   document.querySelector('.heritage-text p').textContent = `${config.name} combines design, engineering, and performance across every model in its range.`;
   document.querySelectorAll('.heritage-text p')[1].textContent = `Every ${config.name} is shaped around a clear idea: purposeful design with technology that earns its place.`;
   document.querySelectorAll('.heritage-text p')[2].textContent = `From compact daily drivers to flagship performance machines, the range carries the character of ${config.name}.`;
-  setImage(document.querySelector('.heritage-image'), `https://images.unsplash.com/photo-${config.images[13]}?w=800&auto=format&fit=crop`, `${config.name} heritage vehicle`);
   document.querySelectorAll('.car-card').forEach((card, index) => {
     const model = config.models[index];
-    const image = config.images[index];
-    setImage(card.querySelector('.car-image'), `https://images.unsplash.com/photo-${image}?w=800&auto=format&fit=crop`, `${config.name} ${model}`);
     card.querySelector('.car-name').textContent = model;
     card.querySelector('.car-category').textContent = index < 4 ? 'Performance' : index < 8 ? 'Core Range' : 'Premium Range';
     card.querySelector('.car-subtitle').textContent = `${config.name} ${model} — engineered for the road ahead`;
