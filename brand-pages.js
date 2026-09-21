@@ -55,6 +55,17 @@ const specData = {
   mclaren: [['740','2.7s','206 mph'],['740','2.8s','206 mph'],['671','3.0s','205 mph'],['671','2.8s','205 mph'],['755','2.1s','205 mph'],['710','2.9s','212 mph'],['612','3.1s','203 mph'],['804','2.8s','200 mph'],['814','2.8s','208 mph'],['814','2.5s','208 mph'],['1035','2.9s','250 mph'],['903','2.8s','217 mph'],['618','3.2s','243 mph']]
 };
 
+const featureData = {
+  bmw: ['Driving dynamics', 'Precision design', 'Adaptive suspension', 'Connected drive'],
+  ferrari: ['Racing heritage', 'V12 expertise', 'Carbon construction', 'Italian design'],
+  mercedes: ['Luxury comfort', 'Advanced safety', 'AMG performance', 'Digital cockpit'],
+  lamborghini: ['Hybrid performance', 'Striking design', 'Carbon technology', 'All-wheel drive'],
+  audi: ['Quattro traction', 'Digital innovation', 'Premium cabin', 'RS performance'],
+  tesla: ['Electric powertrain', 'Over-the-air updates', 'Autopilot technology', 'Long-range battery'],
+  toyota: ['Toyota reliability', 'Hybrid efficiency', 'Safety Sense', 'Everyday versatility'],
+  mclaren: ['Carbon fibre', 'Low-weight engineering', 'Motorsport DNA', 'Active aerodynamics']
+};
+
 const config = brandData[document.body.dataset.brand];
 if (config) {
   const theme = themes[document.body.dataset.brand];
@@ -118,12 +129,18 @@ if (config) {
       item.querySelector('.spec-value').textContent = specs[specIndex];
       item.querySelector('.spec-label').textContent = specLabels[specIndex];
     });
+    card.querySelectorAll('.feature-tag').forEach((tag, featureIndex) => {
+      tag.textContent = (featureData[document.body.dataset.brand] || [`${config.name} engineering`])[featureIndex % 4];
+    });
     card.querySelectorAll('.car-facts li').forEach((item, factIndex) => {
       item.textContent = [`Distinctive ${config.name} design language`, 'Advanced engineering meets everyday usability', 'Built for confident performance in every drive', `A defining model in the ${config.name} range`][factIndex];
     });
   });
   document.querySelector('.footer-column h4').textContent = `${config.name} Models`;
   document.querySelectorAll('.footer-column:first-child a').forEach((link, index) => {
-    link.textContent = config.models[index];
+    link.textContent = config.models[index] || `${config.name} range`;
+  });
+  document.querySelectorAll('footer a').forEach(link => {
+    if (/Porsche|911|Taycan|Cayenne|Macan|Panamera|718/.test(link.textContent)) link.textContent = config.name;
   });
 }

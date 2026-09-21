@@ -219,8 +219,8 @@ document.querySelectorAll('img').forEach(image => {
   image.addEventListener('error', () => {
     if (image.dataset.fallbackApplied) return;
     image.dataset.fallbackApplied = 'true';
-    const fallback = [...document.querySelectorAll('img')].find(candidate => candidate !== image && candidate.complete && candidate.naturalWidth > 0);
-    if (fallback) image.src = fallback.currentSrc || fallback.src;
+    const fallback = image.dataset.fallbackSrc;
+    if (fallback && image.src !== fallback) image.src = fallback;
   });
 });
 document.querySelectorAll('a[href="#"]').forEach(link => { link.href = link.classList.contains('view-details') ? '#models' : '#contact'; });
